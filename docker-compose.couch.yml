@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  couchdb:
+    container_name: "scouting-couchdb"
+    restart: unless-stopped
+    env_file:
+      - .env
+    build:
+      context: ./couchdb
+      dockerfile: ./Dockerfile
+    expose:
+      - 5984
+    ports:
+      - "5984:5984"
+    environment:
+      - COUCHDB_HOST=couchdb
+      - COUCHDB_PORT=5984
+      - COUCHDB_USER=${CDB_USER}
+      - COUCHDB_PASSWORD=${CDB_PASSWORD}
+    volumes:
+      - ./couchdb/db.local.ini:/opt/couchdb/etc/local.ini
+      - ./couchdb/data:/opt/couchdb/data
