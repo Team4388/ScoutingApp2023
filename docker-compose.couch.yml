@@ -2,7 +2,7 @@ version: "3"
 
 services:
   couchdb:
-    container_name: "scouting-couchdb"
+    container_name: "scouting23-couchdb"
     restart: unless-stopped
     env_file:
       - .env
