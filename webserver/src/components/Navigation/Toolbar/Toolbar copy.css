@@ -1,0 +1,58 @@
+.toolbar {
+    position: sticky;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    background: #00a65a;
+    height: 56px
+}
+
+.toolbar_navigation {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.toolbar_logo {
+    margin-left: 0.5rem;
+}
+
+.toolbar_logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 2.0rem;
+    height: 100%;
+}
+
+.toolbar_spacer {
+    flex: 1;
+}
+
+.toolbar_items ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0;
+    display: flex;
+}
+
+.toolbar_items li {
+    padding: 0 0.6rem;
+}
+
+.toolbar_items button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.toolbar_items a:hover,
+.toolbar_items a:active {
+    color: #ff3b76;
+}
+
+@media (max-width: 768px) {
+    .toolbar_items {
+        display: none;
+    }
+}
