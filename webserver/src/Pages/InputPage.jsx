@@ -73,15 +73,15 @@ const InputPage = () => {
         red_cards: "0",
         yellow_cards: "0",
         disabled: false,
-        taxi_auto: false,
-        upper_hub_auto: "0",
-        lower_hub_auto: "0",
-        upper_hub_teleop: "0",
-        lower_hub_teleop: "0",
-        climb_level: "0",
         alliance: "",
         defence: "0",
-        disabled: false,
+        taxi_auto: false,
+        //Game spesific scoring
+        cones_scored_auto: "0",
+        cubes_scored_auto: "0",
+        cones_scored_teleop: "0",
+        cubes_scored_teleop: "0",
+        balanced_seesaw: false,
       };
       if (id != null && typeof res[id] !== "undefined") {
         old_doc = res[id];
@@ -136,14 +136,14 @@ const InputPage = () => {
               </Box>
 
               <Box sx={panel_sx}>
-                <InputNumberField name="upper_hub_auto" label="Upper Hub Auto" />
-                <InputNumberField name="lower_hub_auto" label="Lower Hub Auto" />
+                <InputNumberField name="cones_scored_auto" label="Cones Scored Auto" />
+                <InputNumberField name="cubes_scored_auto" label="Cubes Scored Auto" />
                 <FormControlLabel control={<FastField as={Checkbox} type="checkbox" name="taxi_auto" />} label="Auto Taxi" />
               </Box>
 
               <Box sx={panel_sx}>
-                <InputNumberField name="upper_hub_teleop" label="Upper Hub Teleop" />
-                <InputNumberField name="lower_hub_teleop" label="Lower Hub Teleop" />
+                <InputNumberField name="cones_scored_teleop" label="Cones Scored Teleop" />
+                <InputNumberField name="cubes_scored_teleop" label="Cubes Scored Teleop" />
               </Box>
 
               <Box sx={panel_sx}>
