@@ -75,17 +75,17 @@ const DevPage = () => {
   const updateScheduleDoc = useCallback(() => {
     //gets the matches list from the blue alliance api
     superagent
-      //.get("https://www.thebluealliance.com/api/v3" + "/event/2022code/matches")
-      .get("https://www.thebluealliance.com/api/v3" + "/event/2022utwv/matches")
-      // .get("https://www.thebluealliance.com/api/v3" + "/event/2022cala/matches")
-      // .get("https://www.thebluealliance.com/api/v3" + "/events/2022/keys")
+      //.get("https://www.thebluealliance.com/api/v3" + "/event/2023code/matches")
+      .get("https://www.thebluealliance.com/api/v3" + "/event/2023utwv/matches")
+      // .get("https://www.thebluealliance.com/api/v3" + "/event/2023cala/matches")
+      // .get("https://www.thebluealliance.com/api/v3" + "/events/2023/keys")
       .set("X-TBA-Auth-Key", "6aXgVYCAcyy4O7FwCGLqj5ATcima5k25smssLqUuHAHTCvGtCWXX7aoM9xNWfaSm")
       .end((err, res) => {
         //parse the resulting json and send it to the db
         putScheduleDoc(processScheduleData(JSON.parse(res.text)));
       });
     superagent
-      .get("https://www.thebluealliance.com/api/v3" + "/event/2022utwv/teams")
+      .get("https://www.thebluealliance.com/api/v3" + "/event/2023utwv/teams")
       .set("X-TBA-Auth-Key", "6aXgVYCAcyy4O7FwCGLqj5ATcima5k25smssLqUuHAHTCvGtCWXX7aoM9xNWfaSm")
       .end((err, res) => {
         //parse the resulting json and send it to the db
