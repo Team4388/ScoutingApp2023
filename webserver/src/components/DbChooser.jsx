@@ -25,7 +25,7 @@ const DbChooser = (props) => {
   });
   return (
     <div>
-      {/* <Box sx={{ width: 400 }}>
+     <Box sx={{ width: 400 }}>
         <FormControl fullWidth>
           <InputLabel>Database</InputLabel>
           <Select value={dbname} label="Database Name" onChange={handleChange}>
@@ -33,11 +33,11 @@ const DbChooser = (props) => {
             <MenuItem value={"denver_fr"}>Denver For Real</MenuItem>
             <MenuItem value={"utah_practice"}>Utah Practice Matches</MenuItem>
             <MenuItem value={"utah_fr"}>Utah For Real</MenuItem>
-            <MenuItem value={"testdata"}>Test Data</MenuItem>
+            <MenuItem value={"test-comp"}>Test Data</MenuItem>
           </Select>
         </FormControl>
         <Button onClick={sync}>Force Sync</Button>
-      </Box> */}
+      </Box>
     </div>
   );
 };
