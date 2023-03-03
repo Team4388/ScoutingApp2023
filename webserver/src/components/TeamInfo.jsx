@@ -52,10 +52,10 @@ const TeamInfo = (props) => {
         drive_train: "",
         drive_motors: "",
         wheels: "",
-        climb_level: "",
-	which_hub: "",
-	shooter_type: "",
-	alignment_strategy: "",
+        canbalance: "",
+	      which_hub: "",
+	      shooter_type: "",
+	      alignment_strategy: "",
         misc_design: "",
       };
       if (typeof res[team] !== "undefined") {

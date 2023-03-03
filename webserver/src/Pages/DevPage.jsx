@@ -5,10 +5,20 @@ import { useLocalDb, useRemoteDb } from "../DbContext";
 import { useProcessedDataBucket } from "../ProcessedDataBucketContext";
 import { getProcessedDataBucket, updateProcessedDataBucket } from "../ProcessedDataBucket";
 import Schedule from "../components/Schedule";
+import DbChooser from "../components/DbChooser";
 import superagent from "superagent";
 
 const DevPage = () => {
   let { localdb, setLocaldb } = useLocalDb();
+  const setEventCode = useCallback(
+    (eventCode) => {
+      localdb.save({
+        $id: "eventcode",
+        type: "eventcode",
+        eventcode: eventCode
+      });
+    }, [localdb]
+  );
   const putScheduleDoc = useCallback(
     (doc) => {
       localdb.save({
@@ -74,18 +84,18 @@ const DevPage = () => {
 
   const updateScheduleDoc = useCallback(() => {
     //gets the matches list from the blue alliance api
+    let eventCode = "2023bcvi"
     superagent
-      //.get("https://www.thebluealliance.com/api/v3" + "/event/2023code/matches")
-      .get("https://www.thebluealliance.com/api/v3" + "/event/2023utwv/matches")
-      // .get("https://www.thebluealliance.com/api/v3" + "/event/2023cala/matches")
-      // .get("https://www.thebluealliance.com/api/v3" + "/events/2023/keys")
-      .set("X-TBA-Auth-Key", "6aXgVYCAcyy4O7FwCGLqj5ATcima5k25smssLqUuHAHTCvGtCWXX7aoM9xNWfaSm")
+    // .get("https://www.thebluealliance.com/api/v3/event/" + localdb["eventCode"] + "/matches")
+    .get("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/matches")
+    .set("X-TBA-Auth-Key", "6aXgVYCAcyy4O7FwCGLqj5ATcima5k25smssLqUuHAHTCvGtCWXX7aoM9xNWfaSm")
       .end((err, res) => {
         //parse the resulting json and send it to the db
         putScheduleDoc(processScheduleData(JSON.parse(res.text)));
       });
     superagent
-      .get("https://www.thebluealliance.com/api/v3" + "/event/2023utwv/teams")
+      // .get("https://www.thebluealliance.com/api/v3/event/" + localdb["eventCode"] + "/teams")
+      .get("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/teams")
       .set("X-TBA-Auth-Key", "6aXgVYCAcyy4O7FwCGLqj5ATcima5k25smssLqUuHAHTCvGtCWXX7aoM9xNWfaSm")
       .end((err, res) => {
         //parse the resulting json and send it to the db
@@ -94,12 +104,15 @@ const DevPage = () => {
   });
 
   const cleanDB = useCallback(() => {
+    let eventcode = localdb["eventcode"]
     localdb.cleanup();
+    setEventCode(eventcode);
   }, [localdb]);
   return (
     <Box>
       <Button onClick={updateScheduleDoc}>Update Matches Doc</Button>
       <Button onClick={cleanDB}>Cleanup DB</Button>
+      <DbChooser />
     </Box>
   );
 };

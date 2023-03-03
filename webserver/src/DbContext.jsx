@@ -72,7 +72,7 @@ export function DbProvider({ children }) {
 
   useEffect(() => {
     // handle.cancel();
-    console.log("SYNCSYNCSYNCSYNCSYNC");
+    console.log("SYNCSYNCSYNCSYNCSYNC"); // A bit verbose inez...
     // updateProcessedDataBucket(localdb, setProcessedDataBucket);
     // localdb
     //   // .setMaxListeners(400)
