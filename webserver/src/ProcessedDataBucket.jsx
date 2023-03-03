@@ -8,19 +8,46 @@ const createDefaultTeamData = (team_number, teamData) => {
       matches_played: 0,
       notes: [],
       data_sets: {
-        upper_hub_auto: [],
-        lower_hub_auto: [],
-        upper_hub_teleop: [],
-        lower_hub_teleop: [],
+        cones_scored_auto: [],
+        cubes_scored_auto: [],
+        tier_1_scores_auto: [],
+        tier_2_scores_auto: [],
+        tier_3_scores_auto: [],
+        balanced_level_auto: [],
+        balance_points_auto: [],
         auto_points: [],
-        teleop_hub_points: [],
-        climb_points: [],
+
+        teleop_points: [],
+        cones_scored_teleop: [],
+        cubes_scored_teleop: [],
+        tier_1_scores_teleop: [],
+        tier_2_scores_teleop: [],
+        tier_3_scores_teleop: [],
+        balanced_level_teleop: [],
+        balance_points_teleop: [],
+        links: [],
         total_match_points: [],
       },
-      climb_counts: [0, 0, 0, 0, 0],
+      balace_counts_auto: [0, 0, 0],
+      average_cones_scored_auto: 0,
+      average_cubes_scored_auto: 0,
+      average_tier_1_scores_auto: 0,
+      average_tier_2_scores_auto: 0,
+      average_tier_3_scores_auto: 0,
+      average_balanced_level_auto: 0,
+      average_balance_points_auto: 0,
       average_auto_points: 0,
-      average_teleop_hub_points: 0,
-      average_climb_points: 0,
+      
+      balace_counts_teleop: [0, 0, 0],
+      average_cones_scored_teleop: 0,
+      average_cubes_scored_teleop: 0,
+      average_tier_1_scores_teleop: 0,
+      average_tier_2_scores_teleop: 0,
+      average_tier_3_scores_teleop: 0,
+      average_balanced_level_teleop: 0,
+      average_balance_points_teleop: 0,
+      average_teleop_points: 0,
+      average_num_links: 0,
       average_total_match_points: 0,
       num_disables: 0,
       num_flips: 0,
@@ -37,22 +64,36 @@ const processMatch = (doc, thisTeamData) => {
   //add this game's data to the respective team data:
   thisTeamData.matches_played++;
 
-  let auto_points = (parseInt(doc.taxi_auto) ? 2 : 0) + parseInt(doc.upper_hub_auto) * 4 + parseInt(doc.lower_hub_auto) * 2;
-  let teleop_hub_points = parseInt(doc.upper_hub_teleop) * 2 + parseInt(doc.lower_hub_teleop) * 1;
-  let climb_points = (parseInt(doc.climb_level) == 0 ? 4 : 0) + (parseInt(doc.climb_level) == 1 ? 6 : 0) + (parseInt(doc.climb_level) == 2 ? 10 : 0) + (parseInt(doc.climb_level) == 3 ? 15 : 0);
-  let total_match_points = auto_points + teleop_hub_points + climb_points;
-  //data sets
-  thisTeamData.data_sets.upper_hub_auto.push(parseInt(doc.upper_hub_auto));
-  thisTeamData.data_sets.lower_hub_auto.push(parseInt(doc.lower_hub_auto));
-  thisTeamData.data_sets.upper_hub_teleop.push(parseInt(doc.upper_hub_teleop));
-  thisTeamData.data_sets.lower_hub_teleop.push(parseInt(doc.lower_hub_teleop));
-  thisTeamData.data_sets.auto_points.push(auto_points);
-  thisTeamData.data_sets.teleop_hub_points.push(teleop_hub_points);
-  thisTeamData.data_sets.climb_points.push(climb_points);
-  thisTeamData.data_sets.total_match_points.push(total_match_points);
+  let auto_points = (parseInt(doc.taxi_auto) ? 3 : 0) + parseInt(doc.tier_1_scores_auto) * 3 + parseInt(doc.tier_2_scores_auto) * 4 + parseInt(doc.tier_3_scores_auto) * 6 + (parseInt(doc.balanced_level_auto) == 1 ? 8 : 0) + (parseInt(doc.balanced_level_auto) == 2 ? 12 : 0);
+  let teleop_points = + parseInt(doc.tier_1_scores_teleop) * 2 + parseInt(doc.tier_2_scores_teleop) * 3 + parseInt(doc.tier_3_scores_teleop) * 5 + (parseInt(doc.balanced_level_teleop) == 1 ? 6 : 0) + (parseInt(doc.balanced_level_teleop) == 2 ? 10 : 0) + doc.links * 5;
+  let balance_points_auto = (parseInt(doc.balanced_level_auto) == 1 ? 8 : 0) + (parseInt(doc.balanced_level_auto) == 2 ? 12 : 0);
+  let balance_points_teleop = (parseInt(doc.balanced_level_auto) == 1 ? 6 : 0) + (parseInt(doc.balanced_level_auto) == 2 ? 10 : 0);
+  let total_match_points = auto_points + teleop_points;// + climb_points;
+  //data sets - auto
+  thisTeamData.data_sets.cones_scored_auto.push(parseInt(doc.cones_scored_auto));
+  thisTeamData.data_sets.cubes_scored_auto.push(parseInt(doc.cubes_scored_auto));
+  thisTeamData.data_sets.tier_1_scores_auto.push(parseInt(doc.tier_1_scores_auto));
+  thisTeamData.data_sets.tier_2_scores_auto.push(parseInt(doc.tier_2_scores_auto));
+  thisTeamData.data_sets.tier_3_scores_auto.push(parseInt(doc.tier_3_scores_auto));
+  thisTeamData.data_sets.balanced_level_auto.push(parseInt(doc.balanced_level_auto));
+  thisTeamData.data_sets.balance_points_auto.push(balance_points_auto)
+  thisTeamData.data_sets.auto_points.push(parseInt(auto_points));
+
+  //data sets - teleop
+  thisTeamData.data_sets.teleop_points.push(parseInt(teleop_points));
+  thisTeamData.data_sets.cones_scored_teleop.push(parseInt(doc.cones_scored_teleop));
+  thisTeamData.data_sets.cubes_scored_teleop.push(parseInt(doc.cubes_scored_teleop));
+  thisTeamData.data_sets.tier_1_scores_teleop.push(parseInt(doc.tier_1_scores_teleop));
+  thisTeamData.data_sets.tier_2_scores_teleop.push(parseInt(doc.tier_2_scores_teleop));
+  thisTeamData.data_sets.tier_3_scores_teleop.push(parseInt(doc.tier_3_scores_teleop));
+  thisTeamData.data_sets.balanced_level_teleop.push(parseInt(doc.balanced_level_teleop));
+  thisTeamData.data_sets.balance_points_auto.push(balance_points_teleop)
+  thisTeamData.data_sets.links.push(parseInt(doc.links))
+  thisTeamData.data_sets.total_match_points.push(total_match_points)
 
   //climb data
-  thisTeamData.climb_counts[parseInt(doc.climb_level)]++;
+  thisTeamData.balace_counts_auto[parseInt(doc.balanced_level_auto)]++;
+  thisTeamData.balace_counts_auto[parseInt(doc.balanced_level_teleop)]++;
 
   //misc data
   thisTeamData.num_disables += doc.disabled ? 1 : 0;
@@ -66,8 +107,9 @@ const processMatch = (doc, thisTeamData) => {
   //function for getting the sum of an array, use in reduce function of array
   const sum = (accum, current) => accum + current;
   thisTeamData.average_auto_points = thisTeamData.data_sets.auto_points.reduce(sum, 0) / thisTeamData.matches_played;
-  thisTeamData.average_teleop_hub_points = thisTeamData.data_sets.teleop_hub_points.reduce(sum, 0) / thisTeamData.matches_played;
-  thisTeamData.average_climb_points = thisTeamData.data_sets.climb_points.reduce(sum, 0) / thisTeamData.matches_played;
+  thisTeamData.average_teleop_points = thisTeamData.data_sets.teleop_points.reduce(sum, 0) / thisTeamData.matches_played;
+  thisTeamData.average_balance_points_auto = thisTeamData.data_sets.balance_points_auto.reduce(sum, 0) / thisTeamData.matches_played;
+  thisTeamData.average_balance_points_teleop = thisTeamData.data_sets.balance_points_teleop.reduce(sum, 0) / thisTeamData.matches_played;
   thisTeamData.average_total_match_points = thisTeamData.data_sets.total_match_points.reduce(sum, 0) / thisTeamData.matches_played;
 };
 

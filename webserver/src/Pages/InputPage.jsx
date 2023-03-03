@@ -79,9 +79,18 @@ const InputPage = () => {
         //Game spesific scoring
         cones_scored_auto: "0",
         cubes_scored_auto: "0",
+        tier_1_scores_auto: "0",
+        tier_2_scores_auto: "0",
+        tier_3_scores_auto: "0",
+        balanced_level_auto: "0",
+        
         cones_scored_teleop: "0",
         cubes_scored_teleop: "0",
-        balanced_seesaw: false,
+        tier_1_scores_teleop: "0",
+        tier_2_scores_teleop: "0",
+        tier_3_scores_teleop: "0",
+        balanced_level_teleop: "0",
+        links: "0",
       };
       if (id != null && typeof res[id] !== "undefined") {
         old_doc = res[id];
@@ -142,19 +151,41 @@ const InputPage = () => {
               </Box>
 
               <Box sx={panel_sx}>
+                <InputNumberField name="tier_1_scores_auto" label="Tier 1 scores auto" />
+                <InputNumberField name="tier_2_scores_auto" label="Tier 2 scores auto" />
+                <InputNumberField name="tier_3_scores_auto" label="Tier 3 scores auto" />
+              </Box>
+
+              <Box sx={panel_sx}>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Charge station Level Auto</FormLabel>
+                  <RadioGroup aria-label="Charge station Level" name="balanced_level_auto" row>
+                    <FormControlLabel control={<FastField as={Radio} type="radio" name="balanced_level_auto" value="0" />} label="Not on Station" />
+                    <FormControlLabel control={<FastField as={Radio} type="radio" name="balanced_level_auto" value="1" />} label="On but not balanced" />
+                    <FormControlLabel control={<FastField as={Radio} type="radio" name="balanced_level_auto" value="2" />} label="On and balanced" />
+                  </RadioGroup>
+                </FormControl>
+              </Box>
+
+              <Box sx={panel_sx}>
                 <InputNumberField name="cones_scored_teleop" label="Cones Scored Teleop" />
                 <InputNumberField name="cubes_scored_teleop" label="Cubes Scored Teleop" />
               </Box>
 
               <Box sx={panel_sx}>
+                <InputNumberField name="tier_1_scores_teleop" label="Tier 1 scores teleop" />
+                <InputNumberField name="tier_2_scores_teleop" label="Tier 2 scores teleop" />
+                <InputNumberField name="tier_3_scores_teleop" label="Tier 3 scores teleop" />
+                <InputNumberField name="links" label="Links scored" />
+              </Box>
+
+              <Box sx={panel_sx}>
                 <FormControl component="fieldset">
-                  <FormLabel component="legend">Climbing</FormLabel>
-                  <RadioGroup aria-label="Climbing" name="climb_level" row>
-                    <FormControlLabel control={<FastField as={Radio} type="radio" name="climb_level" value="0" />} label="None" />
-                    <FormControlLabel control={<FastField as={Radio} type="radio" name="climb_level" value="1" />} label="Low" />
-                    <FormControlLabel control={<FastField as={Radio} type="radio" name="climb_level" value="2" />} label="Mid" />
-                    <FormControlLabel control={<FastField as={Radio} type="radio" name="climb_level" value="3" />} label="High" />
-                    <FormControlLabel control={<FastField as={Radio} type="radio" name="climb_level" value="4" />} label="Traversal" />
+                  <FormLabel component="legend">Charge station Level Teleop</FormLabel>
+                  <RadioGroup aria-label="Charge station Level" name="balanced_level_teleop" row>
+                    <FormControlLabel control={<FastField as={Radio} type="radio" name="balanced_level_teleop" value="0" />} label="Not on Station" />
+                    <FormControlLabel control={<FastField as={Radio} type="radio" name="balanced_level_teleop" value="1" />} label="On but not balanced" />
+                    <FormControlLabel control={<FastField as={Radio} type="radio" name="balanced_level_teleop" value="2" />} label="On and balanced" />
                   </RadioGroup>
                 </FormControl>
               </Box>
