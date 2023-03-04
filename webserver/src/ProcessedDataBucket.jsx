@@ -87,7 +87,7 @@ const processMatch = (doc, thisTeamData) => {
   thisTeamData.data_sets.tier_2_scores_teleop.push(parseInt(doc.tier_2_scores_teleop));
   thisTeamData.data_sets.tier_3_scores_teleop.push(parseInt(doc.tier_3_scores_teleop));
   thisTeamData.data_sets.balanced_level_teleop.push(parseInt(doc.balanced_level_teleop));
-  thisTeamData.data_sets.balance_points_auto.push(balance_points_teleop)
+  thisTeamData.data_sets.balance_points_teleop.push(balance_points_teleop)
   thisTeamData.data_sets.links.push(parseInt(doc.links))
   thisTeamData.data_sets.total_match_points.push(total_match_points)
 

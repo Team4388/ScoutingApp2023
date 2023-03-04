@@ -47,10 +47,27 @@ const DashboardPage = () => {
       let value = processedDataBucket.teamData[property];
       rowData.push({
         id: value.team_number,
+        
+        average_cones_scored_auto: roundPlaces(value.average_cones_scored_auto, 2),
+        average_cubes_scored_auto: roundPlaces(value.average_cubes_scored_auto, 2),
+        average_tier_1_scores_auto: roundPlaces(value.average_tier_1_scores_auto, 2),
+        average_tier_2_scores_auto: roundPlaces(value.average_tier_2_scores_auto, 2),
+        average_tier_3_scores_auto: roundPlaces(value.average_tier_3_scores_auto, 2),
+        average_balanced_level_auto: roundPlaces(value.average_balanced_level_auto, 2),
+        average_balance_points_auto: roundPlaces(value.average_balance_points_auto, 2),
         average_auto_points: roundPlaces(value.average_auto_points, 2),
-        average_teleop_hub_points: roundPlaces(value.average_teleop_hub_points, 2),
-        average_climb_points: roundPlaces(value.average_climb_points, 2),
+        
+        average_cones_scored_teleop: roundPlaces(value.average_cones_scored_teleop, 2),
+        average_cubes_scored_teleop: roundPlaces(value.average_cubes_scored_teleop, 2),
+        average_tier_1_scores_teleop: roundPlaces(value.average_tier_1_scores_teleop, 2),
+        average_tier_2_scores_teleop: roundPlaces(value.average_tier_2_scores_teleop, 2),
+        average_tier_3_scores_teleop: roundPlaces(value.average_tier_3_scores_teleop, 2),
+        average_balanced_level_teleop: roundPlaces(value.average_balanced_level_teleop, 2),
+        average_balance_points_teleop: roundPlaces(value.average_balance_points_teleop, 2),
+        average_teleop_points: roundPlaces(value.average_teleop_points, 2),
+        average_num_links: roundPlaces(value.average_num_links, 2),
         average_total_match_points: roundPlaces(value.average_total_match_points, 2),
+        
         matches_played: value.matches_played,
         num_disables: value.num_disables,
         num_flips: value.num_flips,
@@ -66,16 +83,16 @@ const DashboardPage = () => {
     { field: "id", headerName: "Team", width: 100, checkboxSelection: true, pinned: "left", sortable: true },
     { field: "average_total_match_points", headerName: "Avg Total Pts", width: 120, sortable: true },
     { field: "average_auto_points", headerName: "Avg Auto Pts", width: 120, sortable: true },
-    { field: "average_teleop_hub_points", headerName: "Avg Teleop Hub Pts", width: 160, sortable: true },
-    { field: "average_climb_points", headerName: "Avg Climb Pts", width: 120, sortable: true },
+    { field: "average_teleop_points", headerName: "Avg Teleop Pts", width: 160, sortable: true },
+    { field: "average_balance_points_auto", headerName: "Avg Balance auto", width: 160, sortable: true },
+    { field: "average_balance_points_teleop", headerName: "Avg Balance teleop", width: 160, sortable: true },
     { field: "yellow_cards", headerName: "Yellow Cards", width: 120, sortable: true },
     { field: "red_cards", headerName: "Red Cards", width: 100, sortable: true },
     { field: "fouls", headerName: "Fouls", width: 70, sortable: true },
     { field: "fouls_tech", headerName: "Tech Fouls", width: 100, sortable: true },
     { field: "num_disables", headerName: "Disables", width: 100, sortable: true },
-    { field: "num_flips", headerName: "Flips", width: 80, sortable: true },
     { field: "matches_played", headerName: "Matches", width: 100, sortable: true },
-    { field: "", headerName: "", width: 150, sortable: true },
+    //{ field: "", headerName: "", width: 150, sortable: true },
   ]);
 
   const [selectedTeams, setSelectedTeams] = useState([]);
