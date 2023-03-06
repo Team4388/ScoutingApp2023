@@ -1,2 +1,3 @@
 webserver/node_modules/*
 webserver/build/*
+build_hash.txt
