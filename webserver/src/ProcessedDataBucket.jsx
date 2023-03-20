@@ -69,6 +69,7 @@ const processMatch = (doc, thisTeamData) => {
   let balance_points_auto = (parseInt(doc.balanced_level_auto) == 1 ? 8 : 0) + (parseInt(doc.balanced_level_auto) == 2 ? 12 : 0);
   let balance_points_teleop = (parseInt(doc.balanced_level_auto) == 1 ? 6 : 0) + (parseInt(doc.balanced_level_auto) == 2 ? 10 : 0);
   let total_match_points = auto_points + teleop_points;// + climb_points;
+  
   //data sets - auto
   thisTeamData.data_sets.cones_scored_auto.push(parseInt(doc.cones_scored_auto));
   thisTeamData.data_sets.cubes_scored_auto.push(parseInt(doc.cubes_scored_auto));
@@ -126,6 +127,7 @@ export function updateProcessedDataBucket(db, setProcessedDataBucket) {
 
       Object.values(result).forEach((doc) => {
         // console.log(doc);
+        // console.log(doc);
         if (doc.type === "schedule") {
           return;
         }
@@ -141,9 +143,9 @@ export function updateProcessedDataBucket(db, setProcessedDataBucket) {
        if(is_a_match){ 
         // if (doc.$id.substring(0,2)) {
           let team_num = doc.$id.split("_")[1];
-          console.log(doc);
           createDefaultTeamData(team_num, teamData);
           let thisTeamData = teamData[team_num];
+          //console.log(doc);
           processMatch(doc, thisTeamData);
         }
         // if (doc.type === "notes") {

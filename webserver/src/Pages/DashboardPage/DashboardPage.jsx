@@ -33,8 +33,10 @@ const DashboardPage = () => {
   //   };
   // };
   let {localdb} = useLocalDb();
+  console.log(localdb.allDocs())
   let { processedDataBucket, setProcessedDataBucket } = useProcessedDataBucket();
-    // updateProcessedDataBucket(localdb, setProcessedDataBucket);
+  // updateProcessedDataBucket(localdb, setProcessedDataBucket);
+  updateProcessedDataBucket(localdb, setProcessedDataBucket);
 
   let rowData = [];
   if (processedDataBucket != null) {
@@ -112,7 +114,7 @@ const DashboardPage = () => {
     //   selectedRowsString += " and " + othersCount + " other" + (othersCount !== 1 ? "s" : "");
     // }
     // document.querySelector("#selectedRows").innerHTML = selectedRowsString;
-    setSelectedTeams(selectedTeams);
+    setSelectedTeams([]); // the alusion of choice
   }, [selectedTeams]);
 
   // const { processedDataBucket, setProcessedDataBucket } = pdbCtx;

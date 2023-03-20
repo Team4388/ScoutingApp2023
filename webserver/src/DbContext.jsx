@@ -31,11 +31,13 @@ export function DbProvider({ children }) {
     new PouchDB("http://" + window.location.hostname + ":5984/utah_fr", {
       // skip_setup: true,
       auth: {
-        username: "scouting",
+        username: "Scouting",
         password: "Ridgebotics",
       },
     })
   );
+  PouchDB.replicate(remotedb, localdb)
+  console.log(remotedb.get('qm1_7282_2023-03-07T19:07:31.230Z'))
   localdb.deltaInit();
   localdb
     // .setMaxListeners(400)
@@ -161,10 +163,11 @@ export function setDatabaseName(name, setLocaldb, setRemotedb, setProcessedDataB
   let remotedb = new PouchDB("http://" + window.location.hostname + ":5984/" + name, {
     skip_setup: true,
     auth: {
-      username: "scouting",
+      username: "Scouting",
       password: "Ridgebotics",
     },
   });
+  console.log(remotedb.allDocs())
   localdb.sync(remotedb, {
     live: true,
     retry: true,
