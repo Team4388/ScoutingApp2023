@@ -52,10 +52,8 @@ const TeamInfo = (props) => {
         drive_train: "",
         drive_motors: "",
         wheels: "",
-        canbalance: "",
-	      which_hub: "",
-	      shooter_type: "",
-	      alignment_strategy: "",
+        max_height_level: "",
+        balance_strat: "",
         misc_design: "",
       };
       if (typeof res[team] !== "undefined") {
@@ -89,10 +87,8 @@ const TeamInfo = (props) => {
               <FastField type="input" as={TextField} name="drive_train" label="Drive Train Type" />
               <FastField type="input" as={TextField} name="drive_motors" label="# of Drive Motors" />
               <FastField type="input" as={TextField} name="wheels" label="Wheels" />
-              <FastField type="input" as={TextField} name="climb_level" label="Climb Level" />
-              <FastField type="input" as={TextField} name="which_hub" label="Which Hub" />
-              <FastField type="input" as={TextField} name="shooter_type" label="Shooter Type" />
-              <FastField type="input" as={TextField} name="alignment_strategy" label="Alignment Strat" />
+              <FastField type="input" as={TextField} name="max_height_level" label="Highest Tier" />
+              <FastField type="input" as={TextField} name="balance_strat" label="Balance Stratagy" />
               <FastField type="input" as={TextField} name="misc_design" label="Misc" />
             <Box sx={{ ...panel_sx, display: "flex", flexDirection: "column" }}>
               <Button type="submit" disabled={isSubmitting}>

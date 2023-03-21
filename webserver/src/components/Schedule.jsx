@@ -34,10 +34,11 @@ const Schedule = (props) => {
 
   const TeamNumberComponent = (props) => {
     return (
-      // <Link to="/Input" state={{ id: props.match_id + "_" + props.number }} style={{ color: "inherit" }}>
-      <Link to="/Team" state={{ team: props.number }} style={{ color: "inherit" }}>
+      <Link to="/Input" state={{ id: props.match_id + "_" + props.number }} style={{ color: "inherit" }}>
         <h3>{props.number}</h3>
       </Link>
+      
+      //<Link to="/Team" state={{ team: props.number }} style={{ color: "inherit" }}>
     );
   };
 
